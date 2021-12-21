@@ -39,8 +39,22 @@ class MainActivity : AppCompatActivity() {
             lastNumeric = false
         }
     }
+    fun onOperator(view: View){
+        if (lastNumeric &&!isOperatorAdded(tvInput.text.toString())){
+            tvInput.append((view as Button).text)
+            lastDot = false
+            lastNumeric = false
+        }
+    }
 
-
+    private fun isOperatorAdded(value: String) : Boolean{
+        return  if (value.startsWith("-")){
+            false
+        }
+        else{
+            value.contains("/") || value.contains("*") || value.contains("+")
+                    || value.contains("-")
+        }
 
     }
 }
